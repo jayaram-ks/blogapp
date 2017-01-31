@@ -59,6 +59,21 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+
+
+                                    <li>
+                                        <a href="">Add New Post </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="">My Posts</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="{{url('/user/'.Auth::user()->id)}}">My Profile</a>
+                                    </li>
+
+                                     
                                     <li>
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
@@ -75,6 +90,33 @@
                         @endif
                     </ul>
                 </div>
+
+      @if (Session::has('message'))
+      <div class="flash alert-info">
+        <p class="panel-body">
+          {{ Session::get('message') }}
+        </p>
+      </div>
+      @endif
+
+
+
+        @if ($errors->any())
+        <div class="row">
+      <div class='flash alert-danger'>
+        <ul class="panel-body">
+          @foreach ( $errors->all() as $error )
+          <li style="padding:0px 5px 0px 5px;list-style: none;">
+            {{ $error }}
+          </li>
+          @endforeach
+        </ul>
+      </div>
+      </div>
+      @endif
+
+
+
             </div>
         </nav>
 
